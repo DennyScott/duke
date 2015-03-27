@@ -16,11 +16,6 @@ public class PlayerWeaponManager : MonoBehaviour {
 		source = GetComponent<AudioSource>();
 	}
 
-	// Use this for initialization
-	void Start () {
- 			
-	}
-
 	void Update() {
 		if(Input.GetButtonDown("Fire1")) {
 			if(currentState != States.EMPTY){
@@ -41,14 +36,16 @@ public class PlayerWeaponManager : MonoBehaviour {
 		 int x = Screen.width / 2;
         int y = Screen.height / 2;
  		RaycastHit hit;
+		Debug.Log ("Shot Gun");
 
         Ray ray = GetComponent<Camera>().ScreenPointToRay(new Vector3(x, y));
 
         if(Physics.Raycast(ray, out hit, 500)) {
-        	if(hit.collider.tag == "Player") {
-        		GameObject otherPlayer = hit.transform.gameObject;
-        		otherPlayer.GetComponent<PlayerHealth>().RemoveHealth(10);
+			Debug.Log (hit.collider.tag == "Player");
+        	if(hit.collider.tag == "PlayerBody") {
+				hit.collider.transform.root.GetComponent<PhotonView>().RPC("RemoveHealth", PhotonTargets.AllBuffered, 10);
         	}
         }
 	}
+
 }

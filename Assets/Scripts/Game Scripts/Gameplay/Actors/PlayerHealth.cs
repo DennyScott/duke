@@ -10,16 +10,27 @@ public class PlayerHealth : Photon.MonoBehaviour {
 		playersHealth += heal;
 	}
 
+	public void ResetHealth() {
+		playersHealth = 100;
+	}
+
 	public void RemoveHealth(int damage) {
-		Debug.Log("Player Hit with " + damage + " damage");
-		Debug.Log("Total Health Remaining " + playersHealth);
 		playersHealth -= damage;
 		if(playersHealth <= 0) {
-			Debug.Log("Player Died");
+			OnDeath();
 		}
 		if(damageAnimation != null){
 			damageAnimation.SetTrigger("Hit");
 		}
 
+	}
+
+	void OnDeath() {
+		ResetHealth();
+		ResetPosition();
+	}
+
+	void ResetPosition() {
+		transform.position = Vector3.zero;
 	}
 }

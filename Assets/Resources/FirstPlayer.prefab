@@ -46,6 +46,7 @@ GameObject:
   - 82: {fileID: 8236432}
   - 114: {fileID: 11446298}
   - 114: {fileID: 11462652}
+  - 114: {fileID: 11444976}
   m_Layer: 0
   m_Name: FirstPlayer
   m_TagString: Player
@@ -103,7 +104,7 @@ GameObject:
   - 23: {fileID: 2309170}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: PlayerBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -483,6 +484,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersHealth: 100
   damageAnimation: {fileID: 0}
+--- !u!114 &11444976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a427ed2582646b3a8d74b431bc0899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11446298
 MonoBehaviour:
   m_ObjectHideFlags: 1
