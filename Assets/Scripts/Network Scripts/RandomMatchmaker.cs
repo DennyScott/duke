@@ -25,11 +25,14 @@ public class RandomMatchmaker : MonoBehaviour
     }
 
     void OnJoinedRoom() {
-    	GameObject player = PhotonNetwork.Instantiate("FirstPerson", Vector3.zero, Quaternion.identity, 0);
+    	GameObject player = PhotonNetwork.Instantiate("FirstPlayer", Vector3.zero, Quaternion.identity, 0);
     	player.GetComponent<CharacterController>().enabled = true;
     	player.GetComponent<FirstPersonController>().enabled = true;
-    	player.GetComponent<AudioSource>().enabled = true;
     	player.GetComponentInChildren<Camera>().enabled = true;
     	player.GetComponentInChildren<AudioListener>().enabled = true;
+		foreach(var source in player.GetComponentsInChildren<AudioSource>()) {
+			source.enabled = true;
+		}
+		player.GetComponentInChildren<PlayerWeaponManager>().enabled = true;
     }
 }

@@ -2,11 +2,10 @@
 using System.Collections;
 
 public class TriggerWeapon : MonoBehaviour {
-	public GameObject weapon;
-	public GameObject player;
-
 	void OnTriggerEnter(Collider other) {
-		player.GetComponent<PlayerWeaponManager>().EquipWeapon();
-		Destroy(gameObject);
+		if(other.transform.tag == "Player") {
+			other.transform.gameObject.GetComponentInChildren<PlayerWeaponManager>().EquipWeapon();
+			Destroy(gameObject);
+		}
 	}
 }

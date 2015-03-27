@@ -6,6 +6,11 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	private Vector3 correctPlayerPos;
     private Quaternion correctPlayerRot;
  
+	void Start() {
+		if(photonView.isMine) {
+			GetComponentInChildren<PlayerHealth>().damageAnimation = GameObject.FindGameObjectWithTag("DamageHud").GetComponent<Animator>();
+		}
+	}
     // Update is called once per frame
     void Update()
     {

@@ -1,16 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : Photon.MonoBehaviour {
 	public int playersHealth = 100;
-	public GameObject damageTaken;
 
-	private Animator damageAnimation;
-
-	void Awake() {
-		damageAnimation = damageTaken.GetComponent<Animator>();
-	}
-
+	public Animator damageAnimation;
 
 	public void AddHealth(int heal) {
 		playersHealth += heal;
