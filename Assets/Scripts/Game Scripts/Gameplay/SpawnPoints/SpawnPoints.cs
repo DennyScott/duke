@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public class SpawnPoints : MonoBehaviour {
 
     private static List<GameObject> _spawnPoints = new List<GameObject>();
-
-    private static int _lastIndex;
  
 	// Use this for initialization
 	void Awake () {
@@ -25,8 +23,6 @@ public class SpawnPoints : MonoBehaviour {
         foreach (var child in GetComponentsInChildren<SpawnPoint>()) {
             _spawnPoints.Add(child.gameObject);
         }
-        Debug.Log(_spawnPoints.Count);
-        _lastIndex = _spawnPoints.Count;
     }
 
     /// <summary>
@@ -34,7 +30,7 @@ public class SpawnPoints : MonoBehaviour {
     /// </summary>
     /// <returns>A transform to spawn the player at</returns>
     public static Transform GetRandomSpawnPoint() {
-        _lastIndex = _lastIndex + 1 >= _spawnPoints.Count ? 0 : _lastIndex + 1;  //If the index is higher then the list, it will reset back to 0
-        return _spawnPoints[_lastIndex].transform;
+        MatchSettings.SpawnIndex = MatchSettings.SpawnIndex + 1 >= _spawnPoints.Count ? 0 : MatchSettings.SpawnIndex + 1;  //If the index is higher then the list, it will reset back to 0
+        return _spawnPoints[MatchSettings.SpawnIndex].transform;
     }
 }

@@ -1105,6 +1105,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1969072126}
   - 114: {fileID: 1969072125}
+  - 114: {fileID: 1969072127}
+  - 114: {fileID: 1969072128}
   m_Layer: 0
   m_Name: Network
   m_TagString: Untagged
@@ -1135,6 +1137,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!114 &1969072127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1969072124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e961eb7584e0ba1489c0a95d13c1df81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1969072128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1969072124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 1
+  instantiationId: 1
+  isRuntimeInstantiated: 0
 --- !u!1 &1992727528 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 01c807f048e1a4f54988477eb9acdf3c, type: 3}

@@ -6,12 +6,14 @@ public class PlayerSpawning : MonoBehaviour {
     public System.Action OnSpawnAction;
     private Transform _transform ;
     private PlayerHealth _health;
+    private PhotonView _photonView;
 
 	// Use this for initialization
 	void Start () {
 	    _health = GetComponent<PlayerHealth>();
 	    _transform = gameObject.transform;
 	    _health.OnDeathAction += OnSpawn;
+	    _photonView = GetComponent<PhotonView>();
         OnSpawn();
 	}
 
@@ -20,6 +22,7 @@ public class PlayerSpawning : MonoBehaviour {
         _transform.position = spawnTrans.position;
         _transform.rotation = spawnTrans.rotation;
         _health.ResetHealth();
+        MatchSettings.UpdateSpawnIndex();
         if (OnSpawnAction != null) {
             OnSpawnAction();
         }

@@ -31,6 +31,7 @@ public class PlayerHealth : Photon.MonoBehaviour {
 	    if (OnDeathAction != null) {
 	        OnDeathAction();
 	    }
+        MatchSettings.TriggerDeath();
 	}
 
     void OnDisable() {
