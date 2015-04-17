@@ -1015,6 +1015,10 @@ Prefab:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 01c807f048e1a4f54988477eb9acdf3c, type: 3}
+      propertyPath: m_TagString
+      value: World
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01c807f048e1a4f54988477eb9acdf3c, type: 3}
   m_IsPrefabParent: 0
