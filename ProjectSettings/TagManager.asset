@@ -7,6 +7,7 @@ TagManager:
   - DamageHud
   - PlayerBody
   - World
+  - HealthHud
   layers:
   - Default
   - TransparentFX

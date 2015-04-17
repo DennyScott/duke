@@ -485,6 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayersHealth: 100
   DamageAnimation: {fileID: 0}
+  healthHUD: {fileID: 0}
 --- !u!114 &11427178
 MonoBehaviour:
   m_ObjectHideFlags: 1
