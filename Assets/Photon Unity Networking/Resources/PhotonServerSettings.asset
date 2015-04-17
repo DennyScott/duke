@@ -38,4 +38,7 @@ MonoBehaviour:
   - SetSpawnIndex
   - AddDeath
   - AddKill
+  - ShootGunSound
+  - PlaySound
+  - WalkSound
   DisableAutoOpenWizard: 0

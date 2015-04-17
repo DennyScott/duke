@@ -30,20 +30,17 @@ public class RandomMatchmaker : MonoBehaviour {
         player.GetComponent<FirstPersonController>().enabled = true;
         player.GetComponentInChildren<Camera>().enabled = true;
         player.GetComponentInChildren<AudioListener>().enabled = true;
+        
+        
         foreach (var source in player.GetComponentsInChildren<AudioSource>()) {
             source.enabled = true;
         }
         player.GetComponent<PlayerWeaponManager>().enabled = true;
         player.GetComponent<PlayerHealth>().enabled = true;
         player.GetComponent<PlayerSpawning>().enabled = true;
-        #if UNITY_EDITOR
-        Cursor.lockState = CursorLockMode.None;
 
-        #else
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        Debug.Log("Hit");
-        #endif
 
         if (JoinedRoom != null) {
             JoinedRoom(player);

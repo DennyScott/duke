@@ -8,8 +8,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 {
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
-    public class FirstPersonController : MonoBehaviour
-    {
+    public class FirstPersonController : MonoBehaviour {
+
+        public Action<int> OnWalkSound;
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
@@ -169,7 +170,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // excluding sound at index 0
             int n = Random.Range(1, m_FootstepSounds.Length);
             m_AudioSource.clip = m_FootstepSounds[n];
-            m_AudioSource.PlayOneShot(m_AudioSource.clip);
+
+            //Play public sound
+            if (OnWalkSound != null) {
+                OnWalkSound(n);
+            }
+
             // move picked sound to index 0 so it's not picked next time
             m_FootstepSounds[n] = m_FootstepSounds[0];
             m_FootstepSounds[0] = m_AudioSource.clip;

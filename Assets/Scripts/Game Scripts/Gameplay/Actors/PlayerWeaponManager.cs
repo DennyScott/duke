@@ -2,18 +2,20 @@
 using System.Collections;
 
 public class PlayerWeaponManager : MonoBehaviour {
-	enum States {EMPTY, PISTOL};
-	private States currentState = States.EMPTY;
+	enum States {Empty, Pistol};
+	private States _currentState = States.Empty;
 
 
-	public GameObject weapon;
-	public AudioClip shootSound;
-	public AudioClip reloadSound;
+	public GameObject Weapon;
+	public AudioClip ShootSound;
+	public AudioClip ReloadSound;
 
-	private AudioSource source;
+    private PhotonView _view;
+	private AudioSource _source;
 
 	void Awake() {
-		source = GetComponent<AudioSource>();
+		_source = GetComponent<AudioSource>();
+	    _view = GetComponent<PhotonView>();
 	}
 
 	void Update() {
@@ -25,32 +27,34 @@ public class PlayerWeaponManager : MonoBehaviour {
             return;
         }
 
-        if (currentState != States.EMPTY) {
+        if (_currentState != States.Empty) {
             FireGun();
         }
     }
 
     public void EquipWeapon() {
-		source.PlayOneShot(reloadSound);
-		weapon.SetActive(true);
-		currentState = States.PISTOL;
+		_source.PlayOneShot(ReloadSound);
+		Weapon.SetActive(true);
+		_currentState = States.Pistol;
 	}
 
 
 	private void FireGun() {
-		source.PlayOneShot(shootSound);
+		_source.PlayOneShot(ShootSound);
 		var x = Screen.width / 2;
         var y = Screen.height / 2;
  		RaycastHit hit;
 
         var ray = GetComponentInChildren<Camera>().ScreenPointToRay(new Vector3(x, y));
+        _view.RPC("ShootGunSound", PhotonTargets.All);
 
-        if(Physics.Raycast(ray, out hit, 500)) {
-			Debug.Log (hit.collider.tag == "Player");
-        	if(hit.collider.tag == "PlayerBody") {
-				hit.collider.transform.root.GetComponent<PhotonView>().RPC("RemoveHealth", PhotonTargets.AllBuffered, 10);
-        	}
-        }
+	    if (!Physics.Raycast(ray, out hit, 500)) {
+	        return;
+	    }
+	    
+        if(hit.collider.tag == "PlayerBody") {
+	        hit.collider.transform.root.GetComponent<PhotonView>().RPC("RemoveHealth", PhotonTargets.AllBuffered, 10);
+	    }
 	}
 
 }
