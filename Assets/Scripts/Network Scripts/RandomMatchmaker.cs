@@ -36,7 +36,14 @@ public class RandomMatchmaker : MonoBehaviour {
         player.GetComponent<PlayerWeaponManager>().enabled = true;
         player.GetComponent<PlayerHealth>().enabled = true;
         player.GetComponent<PlayerSpawning>().enabled = true;
+        #if UNITY_EDITOR
         Cursor.lockState = CursorLockMode.None;
+
+        #else
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Debug.Log("Hit");
+        #endif
 
         if (JoinedRoom != null) {
             JoinedRoom(player);
