@@ -17,14 +17,20 @@ public class PlayerWeaponManager : MonoBehaviour {
 	}
 
 	void Update() {
-		if(Input.GetButtonDown("Fire1")) {
-			if(currentState != States.EMPTY){
-				FireGun();
-			}
-		}
+	    Shoot();
 	}
 
-	public void EquipWeapon() {
+    void Shoot() {
+        if (!Input.GetButtonDown("Fire1")) {
+            return;
+        }
+
+        if (currentState != States.EMPTY) {
+            FireGun();
+        }
+    }
+
+    public void EquipWeapon() {
 		source.PlayOneShot(reloadSound);
 		weapon.SetActive(true);
 		currentState = States.PISTOL;
@@ -33,12 +39,11 @@ public class PlayerWeaponManager : MonoBehaviour {
 
 	private void FireGun() {
 		source.PlayOneShot(shootSound);
-		 int x = Screen.width / 2;
-        int y = Screen.height / 2;
+		var x = Screen.width / 2;
+        var y = Screen.height / 2;
  		RaycastHit hit;
-		Debug.Log ("Shot Gun");
 
-        Ray ray = GetComponent<Camera>().ScreenPointToRay(new Vector3(x, y));
+        var ray = GetComponentInChildren<Camera>().ScreenPointToRay(new Vector3(x, y));
 
         if(Physics.Raycast(ray, out hit, 500)) {
 			Debug.Log (hit.collider.tag == "Player");

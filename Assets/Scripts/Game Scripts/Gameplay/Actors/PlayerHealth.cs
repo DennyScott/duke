@@ -2,35 +2,43 @@
 using System.Collections;
 
 public class PlayerHealth : Photon.MonoBehaviour {
-	public int playersHealth = 100;
+	public int PlayersHealth = 100;
 
-	public Animator damageAnimation;
+    public System.Action OnDeathAction;
+
+	public Animator DamageAnimation;
 
 	public void AddHealth(int heal) {
-		playersHealth += heal;
+		PlayersHealth += heal;
 	}
 
 	public void ResetHealth() {
-		playersHealth = 100;
+		PlayersHealth = 100;
 	}
 
 	public void RemoveHealth(int damage) {
-		playersHealth -= damage;
-		if(playersHealth <= 0) {
+		PlayersHealth -= damage;
+		if(PlayersHealth <= 0) {
 			OnDeath();
 		}
-		if(damageAnimation != null){
-			damageAnimation.SetTrigger("Hit");
+		if(DamageAnimation != null){
+			DamageAnimation.SetTrigger("Hit");
 		}
 
 	}
 
 	void OnDeath() {
-		ResetHealth();
-		ResetPosition();
+	    if (OnDeathAction != null) {
+	        OnDeathAction();
+	    }
+        MatchSettings.TriggerDeath();
 	}
 
+    void OnDisable() {
+        OnDeathAction = null;
+    }
+
 	void ResetPosition() {
-		transform.position = Vector3.zero;
+	    
 	}
 }

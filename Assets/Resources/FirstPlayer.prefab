@@ -47,6 +47,9 @@ GameObject:
   - 114: {fileID: 11446298}
   - 114: {fileID: 11462652}
   - 114: {fileID: 11444976}
+  - 114: {fileID: 11459374}
+  - 114: {fileID: 11418564}
+  - 114: {fileID: 11427178}
   m_Layer: 0
   m_Name: FirstPlayer
   m_TagString: Player
@@ -82,8 +85,6 @@ GameObject:
   - 20: {fileID: 2023772}
   - 81: {fileID: 8117772}
   - 82: {fileID: 8296344}
-  - 114: {fileID: 11454170}
-  - 114: {fileID: 11407802}
   m_Layer: 0
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
@@ -471,19 +472,33 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &11407802
+--- !u!114 &11418564
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 192360}
+  m_GameObject: {fileID: 169456}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f24e29d63f55a412882ffcc0ce4c0e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersHealth: 100
-  damageAnimation: {fileID: 0}
+  PlayersHealth: 100
+  DamageAnimation: {fileID: 0}
+--- !u!114 &11427178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169456}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c3c8a9863c5494e8ddfbfbae2055d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 135160}
+  shootSound: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
+  reloadSound: {fileID: 8300000, guid: ee71ac4e3eb234dc1a58e9b3fee4be7d, type: 3}
 --- !u!114 &11444976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -506,20 +521,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b39341e9561b466080a0141e0db213f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11454170
+--- !u!114 &11459374
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 192360}
+  m_GameObject: {fileID: 169456}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68c3c8a9863c5494e8ddfbfbae2055d0, type: 3}
+  m_Script: {fileID: 11500000, guid: df8d894e600dd5c4da530c4c6951895c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 135160}
-  shootSound: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
-  reloadSound: {fileID: 8300000, guid: ee71ac4e3eb234dc1a58e9b3fee4be7d, type: 3}
 --- !u!114 &11460630
 MonoBehaviour:
   m_ObjectHideFlags: 1

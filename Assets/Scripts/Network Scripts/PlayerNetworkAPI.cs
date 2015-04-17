@@ -6,7 +6,7 @@ public class PlayerNetworkAPI : MonoBehaviour {
 	private PlayerHealth playerHealth;
 
 	void Start() {
-		playerHealth = GetComponentInChildren<PlayerHealth>();
+		playerHealth = GetComponent<PlayerHealth>();
 	}
 
 	[RPC]
