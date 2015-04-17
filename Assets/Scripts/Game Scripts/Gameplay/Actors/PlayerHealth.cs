@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerHealth : Photon.MonoBehaviour {
 	public int PlayersHealth = 100;
@@ -7,13 +8,16 @@ public class PlayerHealth : Photon.MonoBehaviour {
     public System.Action OnDeathAction;
 
 	public Animator DamageAnimation;
+	public Text healthHUD;
 
 	public void AddHealth(int heal) {
 		PlayersHealth += heal;
+		healthHUD.text = PlayersHealth + "";
 	}
 
 	public void ResetHealth() {
 		PlayersHealth = 100;
+		healthHUD.text = PlayersHealth + "";
 	}
 
 	public void RemoveHealth(int damage) {
@@ -24,6 +28,7 @@ public class PlayerHealth : Photon.MonoBehaviour {
 		if(DamageAnimation != null){
 			DamageAnimation.SetTrigger("Hit");
 		}
+		healthHUD.text = PlayersHealth + "";
 
 	}
 
