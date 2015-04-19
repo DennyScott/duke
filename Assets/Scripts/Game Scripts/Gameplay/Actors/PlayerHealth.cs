@@ -10,21 +10,21 @@ public class PlayerHealth : Photon.MonoBehaviour {
 	#endregion
 
 	#region Delegates and Events
-	public System.Action<GameObject> OnDeathAction;
+	public System.Action<GameObject, int> OnDeathAction;
+    public System.Action<GameObject> OnDeathCompleteAction; 
 	public System.Action<GameObject> OnHealthGained;
-	public System.Action<GameObject> OnHealthLost;
+	public System.Action<GameObject, int> OnHealthLost;
 	public System.Action<GameObject> OnResetHealth;
 	public System.Func<GameObject, bool> CanGainHealth;
 	public System.Func<GameObject, bool> CanLoseHealth;
 	#endregion
 
-	#region Standard Methods
-	void Start() {
+    #region Standard Methods
+    void Start() {
 		OnHealthLost += IsDead;
 		PlayersHealth = MaxHealth;
 	}
 	#endregion
-
 
 	#region Public Methods
 	public void AddHealth(int heal) {
@@ -35,15 +35,15 @@ public class PlayerHealth : Photon.MonoBehaviour {
 		TriggerResetHealth();
 	}
 
-	public void RemoveHealth(int damage) {
-		TriggerHealthLost(damage);
+	public void RemoveHealth(int damage, int hitterId) {
+        TriggerHealthLost(damage, hitterId);
 	}
 	#endregion
 
 	#region Private Methods
-	void IsDead(GameObject g) {
+	void IsDead(GameObject g, int killerId) {
 		if (PlayersHealth <= 0) {
-			TriggerDeath();
+            TriggerDeath(killerId);
 		}
 	}
 
@@ -72,22 +72,25 @@ public class PlayerHealth : Photon.MonoBehaviour {
 		}
 	}
 
-	void TriggerHealthLost(int damage) {
+	void TriggerHealthLost(int damage, int hitterId) {
 		if (CanLoseHealth != null && !CanLoseHealth(gameObject)) {
 			return;
 		}
 
 		PlayersHealth -= damage;
 		if (OnHealthLost != null) {
-			OnHealthLost(gameObject);
+            OnHealthLost(gameObject, hitterId);
 		}
 	}
 
-	void TriggerDeath() {
+    void TriggerDeath(int killerId) {
 		if (OnDeathAction != null) {
-			OnDeathAction(gameObject);
+			OnDeathAction(gameObject, killerId);
 		}
-		MatchSettings.TriggerDeath();
+
+        if (OnDeathCompleteAction != null) {
+            OnDeathCompleteAction(gameObject);
+        }
 	}
 	#endregion
 }

@@ -13,7 +13,7 @@ public class PlayerAnimations : MonoBehaviour {
 		playerHealth.OnHealthLost += DamageAnimation;
 	}
 
-	void DamageAnimation(GameObject g) {
+	void DamageAnimation(GameObject g, int hitterId) {
 		if (DamageAnimator != null) {
 			DamageAnimator.SetTrigger("Hit");
 		}

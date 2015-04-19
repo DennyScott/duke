@@ -12,8 +12,8 @@ public class PlayerNetworkAPI : MonoBehaviour {
 	}
 
 	[RPC]
-	public void RemoveHealth(int amount) {
-		playerHealth.RemoveHealth(amount);
+	public void RemoveHealth(int amount, int shooterId) {
+		playerHealth.RemoveHealth(amount, shooterId);
 	}
 
     [RPC]

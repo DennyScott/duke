@@ -54,7 +54,7 @@ public class PlayerWeaponManager : MonoBehaviour {
 	    }
 	    
         if(hit.collider.tag == "PlayerBody") {
-	        hit.collider.transform.root.GetComponent<PhotonView>().RPC("RemoveHealth", PhotonTargets.AllBuffered, 10);
+	        hit.collider.transform.root.GetComponent<PhotonView>().RPC("RemoveHealth", PhotonTargets.AllBuffered, 10, PhotonNetwork.player.ID);
 	    }
 
         if (hit.collider.tag == "World") {

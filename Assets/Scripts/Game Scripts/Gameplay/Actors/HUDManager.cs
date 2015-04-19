@@ -20,6 +20,10 @@ public class HUDManager : MonoBehaviour {
 		_playerHealth.OnResetHealth += UpdateHealthHud;
 	}
 
+    void UpdateHealthHud(GameObject g, int hitterId) {
+        UpdateHealthHud(g);
+    }
+
 	void UpdateHealthHud(GameObject g) {
 		HealthHud.text = _playerHealth.PlayersHealth + "";
 	}
