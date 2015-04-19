@@ -43,11 +43,11 @@ public class MatchSettings : Photon.MonoBehaviour {
 
     [RPC]
     public void AddKill(int playerId) {
-        ActivePlayers[playerId].Kills++;
+//        ActivePlayers[playerId].Kills++;
     }
 
     [RPC]
     public void AddDeath(int playerId) {
-        ActivePlayers[playerId].Deaths++;
+//        ActivePlayers[playerId].Deaths++;
     }
 }
