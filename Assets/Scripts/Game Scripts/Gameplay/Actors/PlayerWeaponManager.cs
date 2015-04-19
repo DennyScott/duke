@@ -9,6 +9,7 @@ public class PlayerWeaponManager : MonoBehaviour {
 	public GameObject Weapon;
 	public AudioClip ShootSound;
 	public AudioClip ReloadSound;
+	public GameObject BulletEffect;
 
     private PhotonView _view;
 	private AudioSource _source;
@@ -55,6 +56,17 @@ public class PlayerWeaponManager : MonoBehaviour {
         if(hit.collider.tag == "PlayerBody") {
 	        hit.collider.transform.root.GetComponent<PhotonView>().RPC("RemoveHealth", PhotonTargets.AllBuffered, 10);
 	    }
+
+        if (hit.collider.tag == "World") {
+		    var g = (GameObject)Instantiate(BulletEffect, hit.point, new Quaternion());
+		    StartCoroutine("KillSmoke", g);
+	    }
+	}
+
+	IEnumerator KillSmoke(GameObject g) {
+		yield return new WaitForSeconds(0.7f);
+		Debug.Log("Destroying");
+		Destroy(g);
 	}
 
 }
