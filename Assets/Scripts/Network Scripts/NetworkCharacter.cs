@@ -10,6 +10,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	void Start() {
 		if(photonView.isMine) {
 			GetComponent<PlayerAnimations>().DamageAnimator = GameObject.FindGameObjectWithTag("DamageHud").GetComponent<Animator>();
+			GetComponent<HUDManager>().HealthHud = GameObject.FindGameObjectWithTag("HealthHud").GetComponent<Text>();
 		}
 	}
     // Update is called once per frame
