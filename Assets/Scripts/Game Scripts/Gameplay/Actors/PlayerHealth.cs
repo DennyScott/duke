@@ -3,47 +3,91 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class PlayerHealth : Photon.MonoBehaviour {
-	public int PlayersHealth = 100;
 
-    public System.Action OnDeathAction;
+	#region Public Variables
+	public int PlayersHealth;
+	public int MaxHealth = 100;
+	#endregion
 
-	public Animator DamageAnimation;
-	public Text healthHUD;
+	#region Delegates and Events
+	public System.Action<GameObject> OnDeathAction;
+	public System.Action<GameObject> OnHealthGained;
+	public System.Action<GameObject> OnHealthLost;
+	public System.Action<GameObject> OnResetHealth;
+	public System.Func<GameObject, bool> CanGainHealth;
+	public System.Func<GameObject, bool> CanLoseHealth;
+	#endregion
 
+	#region Standard Methods
+	void Start() {
+		OnHealthLost += IsDead;
+		PlayersHealth = MaxHealth;
+	}
+	#endregion
+
+
+	#region Public Methods
 	public void AddHealth(int heal) {
-		PlayersHealth += heal;
-		healthHUD.text = PlayersHealth + "";
+		TriggerHealthGained(heal);
 	}
 
 	public void ResetHealth() {
-		PlayersHealth = 100;
-		healthHUD.text = PlayersHealth + "";
+		TriggerResetHealth();
 	}
 
 	public void RemoveHealth(int damage) {
+		TriggerHealthLost(damage);
+	}
+	#endregion
+
+	#region Private Methods
+	void IsDead(GameObject g) {
+		if (PlayersHealth <= 0) {
+			TriggerDeath();
+		}
+	}
+
+	void OnDisable() {
+		OnDeathAction = null;
+	}
+	#endregion
+
+	#region Events Triggers
+	void TriggerResetHealth() {
+		PlayersHealth = MaxHealth;
+		if(OnResetHealth != null) {
+			OnResetHealth(gameObject);
+		}
+	}
+
+	void TriggerHealthGained(int heal) {
+		if (CanGainHealth != null && !CanGainHealth(gameObject)) {
+			return;
+		}
+
+		PlayersHealth += heal;
+
+		if (OnHealthGained != null) {
+			OnHealthGained(gameObject);
+		}
+	}
+
+	void TriggerHealthLost(int damage) {
+		if (CanLoseHealth != null && !CanLoseHealth(gameObject)) {
+			return;
+		}
+
 		PlayersHealth -= damage;
-		if(PlayersHealth <= 0) {
-			OnDeath();
+		if (OnHealthLost != null) {
+			OnHealthLost(gameObject);
 		}
-		if(DamageAnimation != null){
-			DamageAnimation.SetTrigger("Hit");
+	}
+
+	void TriggerDeath() {
+		if (OnDeathAction != null) {
+			OnDeathAction(gameObject);
 		}
-		healthHUD.text = PlayersHealth + "";
-
+		MatchSettings.TriggerDeath();
 	}
-
-	void OnDeath() {
-	    if (OnDeathAction != null) {
-	        OnDeathAction();
-	    }
-        MatchSettings.TriggerDeath();
-	}
-
-    void OnDisable() {
-        OnDeathAction = null;
-    }
-
-	void ResetPosition() {
-	    
-	}
+	#endregion
 }

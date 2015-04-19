@@ -14,10 +14,10 @@ public class PlayerSpawning : MonoBehaviour {
 	    _transform = gameObject.transform;
 	    _health.OnDeathAction += OnSpawn;
 	    _photonView = GetComponent<PhotonView>();
-        OnSpawn();
+        OnSpawn(gameObject);
 	}
 
-    void OnSpawn() {
+    void OnSpawn(GameObject g) {
         var spawnTrans = SpawnPoints.GetRandomSpawnPoint();
         _transform.position = spawnTrans.position;
         _transform.rotation = spawnTrans.rotation;
