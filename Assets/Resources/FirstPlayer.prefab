@@ -497,9 +497,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c3c8a9863c5494e8ddfbfbae2055d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 135160}
-  shootSound: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
-  reloadSound: {fileID: 8300000, guid: ee71ac4e3eb234dc1a58e9b3fee4be7d, type: 3}
+  Weapon: {fileID: 135160}
+  ShootSound: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
+  ReloadSound: {fileID: 8300000, guid: ee71ac4e3eb234dc1a58e9b3fee4be7d, type: 3}
   BulletEffect: {fileID: 194740, guid: 18bd32166e7b05946a55e6e8d9850977, type: 2}
 --- !u!114 &11444976
 MonoBehaviour:
