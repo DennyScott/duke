@@ -52,6 +52,7 @@ GameObject:
   - 114: {fileID: 11427178}
   - 114: {fileID: 11475360}
   - 114: {fileID: 11479906}
+  - 114: {fileID: 11421884}
   m_Layer: 0
   m_Name: FirstPlayer
   m_TagString: Player
@@ -487,6 +488,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayersHealth: 100
   MaxHealth: 100
+--- !u!114 &11421884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71c7ff69869af74da883f3b8775d39d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSound:
+  - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
+  - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
+  ShootSound: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
 --- !u!114 &11427178
 MonoBehaviour:
   m_ObjectHideFlags: 1
