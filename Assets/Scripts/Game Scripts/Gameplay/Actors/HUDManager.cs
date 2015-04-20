@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class HUDManager : MonoBehaviour {
+public class HUDManager : Manager {
 
 	private PlayerHealth _playerHealth;
 
