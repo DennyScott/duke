@@ -12,7 +12,7 @@ public class PlayerSpawning : MonoBehaviour {
 	void Start () {
 	    _health = GetComponent<PlayerHealth>();
 	    _transform = gameObject.transform;
-	    _health.OnDeathAction += OnSpawn;
+	    _health.OnDeathCompleteAction += OnSpawn;
 	    _photonView = GetComponent<PhotonView>();
         OnSpawn(gameObject);
 	}
@@ -22,7 +22,6 @@ public class PlayerSpawning : MonoBehaviour {
         _transform.position = spawnTrans.position;
         _transform.rotation = spawnTrans.rotation;
         _health.ResetHealth();
-        MatchSettings.UpdateSpawnIndex();
         if (OnSpawnAction != null) {
             OnSpawnAction();
         }
@@ -31,7 +30,7 @@ public class PlayerSpawning : MonoBehaviour {
     void OnDisable() {
         OnSpawnAction = null;
         if (_health.OnDeathAction != null) {
-            _health.OnDeathAction -= OnSpawn;
+            _health.OnDeathCompleteAction -= OnSpawn;
         }
     }
 }
